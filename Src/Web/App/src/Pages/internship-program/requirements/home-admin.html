@@ -1,0 +1,53 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Requirements{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h2>Requirements to be fulfilled</h2>
+    <p>Manage requirements that students must complete.</p>
+</div>
+
+<div class="actions mb-5">
+    <a class="btn btn-primary" role="button" href="requirements/create">Add Requirement</a>
+</div>
+
+<section>
+
+    {% if requirements is empty %}
+    <p>No requirements have found.</p>
+    {% else %}
+
+    <table class="table table-hover">
+        <colgroup>
+            <col class="w-3/5">
+            <col class="w-1/5">
+            <col class="w-1/5">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Starts on</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody class="table-rows-clickable">
+            {% for r in requirements %}
+            <tr data-href="/internship-program/requirements/{{ r.id }}">
+                <td>{{ r.name }}</td>
+                <td>{{ r.startWeekAsMonthWeek }}</td>
+                <td>{{ r.durationWeeksAsWeeks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+</section>
+<script src="/js/internship-program/requirements/home.js"></script>
+{% endblock %}

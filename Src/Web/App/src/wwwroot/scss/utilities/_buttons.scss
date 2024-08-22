@@ -1,0 +1,179 @@
+@use '../mixins';
+@use '../variables' as *;
+
+$btn-disabled: #939393;
+$btn-disabled-bg: #e8e8e8;
+$btn-disabled-border: #e8e8e8;
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 1px solid;
+    box-shadow: none;
+    transition: background-color .1s cubic-bezier(0.02, 1, 1, 1);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.25rem;
+    border-radius: 4px;
+    min-width: 6rem;
+    column-gap: 0.4rem;
+
+    &:focus-visible {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    &:disabled,
+    &.disabled {
+        pointer-events: none;
+        box-shadow: none;
+    }
+}
+
+.btn-sm {
+    padding: 4px 12px;
+    font-size: $fs-small;
+    line-height: 1rem;
+    min-width: 5rem;
+}
+
+.btn>.i {
+    font-size: 1.2rem;
+
+    &:first-child {
+        margin-left: -3px;
+    }
+
+    &:last-child {
+        margin-right: -3px;
+    }
+}
+
+.btn-regular {
+    @include mixins.button-variant(#323130,
+        transparent,
+        #8a8886,
+        #323130,
+        #f2f2f2,
+        #8a8886,
+        #323130,
+        #dedede,
+        #8a8886,
+        #979796,
+        transparent,
+        #8a8886);
+
+    border: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    @include mixins.button-variant(#fff,
+        #006fc9,
+        #006fc9,
+        #fff,
+        #0064b5,
+        #0064b5,
+        #fff,
+        #005499,
+        #005499,
+        #fff,
+        #afc7e9,
+        #afc7e9);
+}
+
+.btn-secondary {
+    @include mixins.button-variant(#323130,
+        #fff,
+        #8a8886,
+        #323130,
+        #e8e8e8,
+        #8a8886,
+        #323130,
+        #dedede,
+        #8a8886,
+        #939393,
+        #e8e8e8,
+        #e8e8e8);
+}
+
+.btn-danger {
+    @include mixins.button-variant(#fff,
+        #d13438,
+        #d13438,
+        #fff,
+        #c12f33,
+        #d13438,
+        #fff,
+        #b22a2e,
+        #d13438,
+        #e8e8e8,
+        #cd9193,
+        #cd9193);
+}
+
+.btn-close {
+    @include mixins.button-variant(#323130,
+        transparent,
+        #8a8886,
+        #323130,
+        #f2f2f2,
+        #8a8886,
+        #323130,
+        #dedede,
+        #8a8886,
+        #979796,
+        transparent,
+        #8a8886);
+
+    .i {
+        font-size: 1.5rem;
+    }
+
+    border: none;
+    padding: 0.75rem;
+    margin: 0;
+    min-width: 2rem;
+    min-height: 2rem;
+    width: 2rem;
+    height: 2rem;
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
+.btn-outline {
+    &-primary {
+        @include mixins.button-variant(#006fc9,
+            #fff,
+            #006fc9,
+            #006fc9,
+            #46acff41,
+            #006fc9,
+            #006fc9,
+            #46acff66,
+            #006fc9,
+            $btn-disabled,
+            $btn-disabled-bg,
+            $btn-disabled-border);
+    }
+
+    &-danger {
+        @include mixins.button-variant(#d13438,
+            #fff,
+            #d13438,
+            #d13438,
+            #d1343931,
+            #d13438,
+            #d13438,
+            #d1343941,
+            #d13438,
+            $btn-disabled,
+            $btn-disabled-bg,
+            $btn-disabled-border);
+    }
+}

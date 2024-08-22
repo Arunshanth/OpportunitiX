@@ -1,0 +1,37 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Modify Internship{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h4>
+        Modify the post
+    </h4>
+</div>
+<form action="/internship-program/internships/{{ internship.id }}/modify" method="POST">
+    <input type="hidden" name="id" value="{{ internship.id }}">
+
+    <div class="field">
+        <label for="title">Title</label>
+        <input name="title" id="title" type="text" maxlength="75" value="{{ internship.title }}">
+    </div>
+
+    <div class="field">
+        <label for="description">Description</label>
+        <div class="text-editor-container">
+            <input type="hidden" name="description" id="description" value="{{ internship.description }}">
+            <div class="text-editor"></div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <input class="btn btn-primary" type="submit" value="Modify">
+    </div>
+</form>
+<script src="/js/internship-program/internship/modify.js"></script>
+{% endblock %}

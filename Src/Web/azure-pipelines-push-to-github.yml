@@ -1,0 +1,27 @@
+trigger:
+  - main
+  - dev
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+  - script: |
+      echo $GHTOKEN | gh auth login --with-token
+      gh auth setup-git
+    displayName: "Configure gh cli"
+    env:
+      GHTOKEN: $(GithubToken)
+
+  - script: |
+      git remote set-url origin https://$AZTOKEN@dev.azure.com/ashenhasanka12/GroupProject/_git/GroupProject
+      git fetch origin
+      git remote add github https://github.com/ashen92/GroupProject.git
+      git checkout main
+      git push github main:main --force -u
+      git checkout dev
+      git push github dev:dev --force -u
+    displayName: "Push to GitHub"
+    env:
+      AZTOKEN: $(AzureDevOpsToken)

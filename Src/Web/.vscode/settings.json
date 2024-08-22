@@ -1,0 +1,41 @@
+{
+    "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "always",
+    "git.suggestSmartCommit": false,
+    "editor.formatOnSave": true,
+    "[php]": {
+        "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "php.suggest.basic": false,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "MySQL-GroupProject",
+            "database": "pdc",
+            "username": "root"
+        }
+    ],
+    "php.version": "8.3",
+    "cSpell.words": [
+        "Mgmt"
+    ]
+}

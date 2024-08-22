@@ -1,0 +1,15 @@
+@use '../variables' as *;
+
+.card {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.14);
+    border-radius: $rounded-2;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+    .header {
+        font-weight: $fw-semibold;
+        margin-bottom: 0;
+    }
+}

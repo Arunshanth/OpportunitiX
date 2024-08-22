@@ -1,0 +1,63 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}{{ requirement.name }}{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title mb-0">
+    <h4>{{ requirement.name }}</h4>
+</div>
+<section class="mt-0">
+    <form>
+        <div class="divider"></div>
+        <p class="fw-medium mb-5">Description</p>
+        <div class="mb-7 bg-grey-100 formatted-text-area p-5 rounded-1">{{ requirement.description|raw }}</div>
+
+        <div class="grid-details">
+            <p class="label">Starting month and week</p>
+            <p>:</p>
+            <p>{{ requirement.startWeekAsMonthWeek }}</p>
+
+            <p class="label">Duration</p>
+            <p>:</p>
+            <p>{{ requirement.durationWeeksAsWeeks }}</p>
+
+            {% set fulfillMethod = requirement.fulfillMethod %}
+            <p class="label">Fulfill Method</p>
+            <p>:</p>
+            <p class="capitalize">{{ fulfillMethod }}</p>
+
+            {% if fulfillMethod == "file-upload" %}
+
+            <p class="label">Allowed file types</p>
+            <p>:</p>
+            <p class="value uppercase">
+                {% for type in requirement.allowedFileTypes %}
+                {{ type }} <br>
+                {% endfor %}
+            </p>
+
+            <p class="label">Maximum file size</p>
+            <p>:</p>
+            <p>{{ requirement.maxFileSize }}</p>
+
+            <p class="label">Maximum file count</p>
+            <p>:</p>
+            <p>{{ requirement.maxFileCount }}</p>
+
+            {% endif %}
+        </div>
+
+        <div class="divider"></div>
+        <div class="actions">
+            <button class="btn btn-outline-primary" type="button">Modify</button>
+            <button class="btn btn-outline-danger" type="button">Remove</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

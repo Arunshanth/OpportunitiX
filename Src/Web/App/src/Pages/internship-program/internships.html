@@ -1,0 +1,286 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Internships{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="layout-job-search">
+    <div class="filters">
+        <div class="title">
+            <i class="i i-filter"></i>
+            Filter
+        </div>
+
+        <div class="search">
+            <i class="i i-search"></i>
+            <input id="search-query" class="search" type="text" placeholder="Search" autocomplete="off">
+            <button id="search-btn" class="btn btn-primary" type="button">Search</button>
+        </div>
+
+        {% if has_role('InternshipProgramAdmin') or has_role('InternshipProgramStudent') %}
+        <div class="filter" id="filter-by-company">
+            Company
+            <i class="i i-chevron-down"></i>
+        </div>
+        {% endif %}
+
+        {% if has_role('InternshipProgramAdmin') or has_role('InternshipProgramPartner') %}
+        <div class="filter" id="filter-by-visibility">
+            Visibility
+            <i class="i i-chevron-down"></i>
+        </div>
+
+        <div class="filter" id="filter-by-approval">
+            Approval
+            <i class="i i-chevron-down"></i>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if internships|length == 0 %}
+
+    <div class="grid h-1/2 items-center text-center">
+        <div>
+            <h5 class="fw-semibold">Nothing found</h5>
+            <div class="description">Modify the search term or adjust the filters and try again.</div>
+        </div>
+    </div>
+
+    {% else %}
+
+    <div class="container">
+        <div>
+            {% if has_permission('CreateInternship') %}
+
+            <div class="mb-4 text-right">
+                <a class="btn btn-primary" role="button" href="/internship-program/internships/create">Post an
+                    internship</a>
+            </div>
+
+            {% endif %}
+
+            <div class="job-list-navigation">
+                <div>
+                    Page {{ page }} of {{ pages }}
+                </div>
+                <div class="flex actions">
+                    <button id="btn-previous-page" type="button" class="btn btn-regular" {% if page==1 %}disabled{%
+                        endif %}>
+                        <i class="i i-chevron-left"></i>
+                        <span>
+                            Prev
+                        </span>
+                    </button>
+
+                    <button id="btn-next-page" type="button" class="btn btn-regular" {% if page==pages %}disabled{%
+                        endif %}>
+                        <span>Next</span>
+                        <i class="i i-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="job-list-container" id="job-list">
+                <div class="job-list">
+                    {% for i in internships %}
+                    <div class="job" data-job-id="{{ i.internship.id }}">
+                        {% if i.organizationLogo is null %}
+                        <div class="job-logo placeholder">
+                            <i class="i i-buildings"></i>
+                        </div>
+                        {% else %}
+                        <img class="job-logo" src="{{ i.organizationLogo }}" alt="{{ i.organizationName }} logo">
+                        {% endif %}
+                        <div class="job-text">
+                            <div class="title">{{ i.internship.title }}</div>
+                            <div>{{ i.organizationName }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="job-details" id="job-details">
+            <div class="skeleton" id="job-details-skeleton">
+                <div class="skeleton-header"></div>
+                <div class="skeleton-header last"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+            </div>
+            <div class="content hidden" id="job-details-content">
+                <div class="header">
+                    <div class="title col-gap-20">
+                        <h3 class="mb-0" id="job-title"></h3>
+                        {% if has_role('InternshipProgramAdmin') %}
+                        <div class="flex">
+                            <div>
+                                <button type="button" class="btn btn-primary hidden"
+                                    id="on-pending-approval">Approve</button>
+                                <div class="flex col-gap-10 hidden" id="on-approval">
+                                    <div class="flex items-center text-success fw-semibold">
+                                        <i class="i i-check2-circle fs-5"></i>
+                                        <span>Approved</span>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" id="undo-approve-btn">Undo</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if has_role('InternshipProgramPartner') %}
+                        <div>
+                            <div class="hidden" id="not-yet-approved">
+                                <div class="flex items-center text-info fw-semibold">
+                                    <i class="i i-hourglass fs-5"></i>
+                                    <span>Not yet approved</span>
+                                </div>
+                            </div>
+                            <div class="flex col-gap-10 hidden" id="approved">
+                                <div class="flex items-center text-success fw-semibold">
+                                    <i class="i i-check2-circle fs-5"></i>
+                                    <span>Approved</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="actions">
+                        {% if has_permission('ReadApplication') %}
+                        <button type="button" class="btn btn-outline-primary"
+                            id="applicants-job-btn">Applicants</button>
+                        {% endif %}
+
+                        {% if has_permission('ModifyInternship') %}
+                        <button type="button" class="btn btn-secondary" id="modify-job-btn">Modify</button>
+                        {% endif %}
+
+                        {% if has_permission('DeleteInternship') %}
+                        <button type="button" class="btn btn-outline-danger" id="remove-job-btn">Remove</button>
+                        {% endif %}
+
+                        {% if has_permission('ApplyToInternship') %}
+                        <button type="button" class="btn btn-primary" id="btn-apply">Apply</button>
+                        <button type="button" class="btn btn-primary hidden" id="btn-undo-apply">Cancel
+                            Application</button>
+                        <span class="hidden" id="apply-limit-text">
+                            You have reached maximum number of internship applications
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="section collapse-container">
+                    <div class="collapse-header">
+                        <h5 class="title">About the internship</h5>
+                    </div>
+                    <div class="collapse-content formatted-text-area" id="job-description"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    {% if not has_role('InternshipProgramPartner') %}
+    <div class="dialog-container" id="company-popup">
+        <div class="dialog min-w-80">
+            <div class="mx-6 mt-2 mb-2">
+                {% for i in organizations %}
+                <div class="checkbox">
+                    <input type="checkbox" name="{{ i.name }}" id="{{ i.id }}">
+                    <label for="{{ i.id }}">{{ i.name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="actions">
+                <button type="button" class="btn btn-primary" id="company-popup-apply-btn">Apply</button>
+                <button type="button" class="btn btn-secondary" id="company-popup-reset-btn">Reset</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if not has_role('InternshipProgramStudent') %}
+
+    <div class="dialog-container" id="visibility-popup">
+        <div class="dialog min-w-80">
+            <div class="mx-6 mt-2 mb-2">
+                <div class="radio">
+                    <input type="radio" name="visibility" id="visibility-all" value="all" checked>
+                    <label for="visibility-all">All</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="visibility" id="visibility-public" value="public">
+                    <label for="visibility-public">Public</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="visibility" id="visibility-private" value="private">
+                    <label for="visibility-private">Private</label>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="button" class="btn btn-primary" id="visibility-popup-apply-btn">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" id="approval-popup">
+        <div class="dialog min-w-80">
+            <div class="mx-6 mt-2 mb-2">
+                <div class="radio">
+                    <input type="radio" name="approval" id="approval-all" value="all" checked>
+                    <label for="approval-all">All</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="approval" id="approval-approved" value="approved">
+                    <label for="approval-approved">Approved</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="approval" id="approval-pending" value="pending">
+                    <label for="approval-pending">Pending</label>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="button" class="btn btn-primary" id="approval-popup-apply-btn">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+</div>
+
+<div class="dialog-container" id="application-dialog">
+    <div class="dialog min-w-80">
+        <form class="mt-2" id="file-upload-form" method="POST" enctype="multipart/form-data">
+            <div id="file-upload-container">
+                <label for="application-file">Select CV/Resume</label>
+                <input type="file" name="application-file" id="application-file" accept=".pdf" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="application-dialog-submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/internship-program/internships.js" type="text/javascript"></script>
+
+{% endblock %}

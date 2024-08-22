@@ -1,0 +1,136 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Add Requirement{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h4>
+        Add a requirement
+    </h4>
+</div>
+<section>
+    <form id="create-requirement-form" action="/internship-program/requirements/create" method="POST">
+
+        <div class="field row">
+            <label for="name">Display name</label>
+            <input type="text" name="name" id="name" autocomplete="off" required>
+        </div>
+        <div class="field row">
+            <label for="description">Description (optional)</label>
+            <div class="text-editor-container">
+                <input type="hidden" name="description" id="description" placeholder="Put your description here.">
+                <div class="text-editor"></div>
+            </div>
+        </div>
+
+        <div class="field row">
+            <label for="start-week">
+                Select the starting week of the requirement (Weeks start when the student is hired)
+            </label>
+            <select name="start-week" id="start-week" autocomplete="off" required>
+                <optgroup label="Month 1">
+                    {% for i in 1..4 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Month 2">
+                    {% for i in 5..8 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Month 3">
+                    {% for i in 9..12 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Month 4">
+                    {% for i in 13..16 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Month 5">
+                    {% for i in 17..20 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Month 6">
+                    {% for i in 21..24 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="field row">
+            <label for="duration-weeks">Select the duration submissions are accepted from the student</label>
+            <input type="number" name="duration-weeks" id="duration-weeks" autocomplete="off" value="1" min="1"
+                max="24">
+        </div>
+
+        <div class="field-radio row" id="fulfill-method">
+            <div class="label">How do you want users to fulfill this requirement?</div>
+            <div>
+                <div class="option">
+                    <input type="radio" name="fulfill-method" id="fulfill-method-file" value="file-upload"
+                        autocomplete="off" required>
+                    <label for="fulfill-method-file">By uploading one or more files</label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="fulfill-method" id="fulfill-method-text" value="text-input"
+                        autocomplete="off" required>
+                    <label for="fulfill-method-text">Prompt user to type in a textbox</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden" id="fulfill-method-file-options">
+            <div class="field row">
+                <div class="label">Select the file types that users can upload to fulfill this requirement.</div>
+                <div class="checkbox-container cols-2">
+                    <input type="checkbox" name="file-types[]" id="file-type-pdf" value="pdf" autocomplete="off"
+                        checked>
+                    <label for="file-type-pdf">PDF</label>
+
+                    <input type="checkbox" name="file-types[]" id="file-type-doc" value="doc" autocomplete="off">
+                    <label for="file-type-doc">DOC</label>
+
+                    <input type="checkbox" name="file-types[]" id="file-type-docx" value="docx" autocomplete="off">
+                    <label for="file-type-docx">DOCX</label>
+
+                    <input type="checkbox" name="file-types[]" id="file-type-ppt" value="ppt" autocomplete="off">
+                    <label for="file-type-ppt">PPT</label>
+
+                    <input type="checkbox" name="file-types[]" id="file-type-pptx" value="pptx" autocomplete="off">
+                    <label for="file-type-pptx">PPTX</label>
+
+                    <input type="checkbox" name="file-types[]" id="file-type-jpg" value="jpg" autocomplete="off">
+                    <label for="file-type-jpg">JPG</label>
+
+                    <input type="checkbox" name="file-types[]" id="file-type-png" value="png" autocomplete="off">
+                    <label for="file-type-png">PNG</label>
+                </div>
+            </div>
+
+            <div class="field row">
+                <label for="max-file-size">Maximum file size (in MB)</label>
+                <input type="number" name="max-file-size" id="max-file-size" value="5" autocomplete="off">
+            </div>
+
+            <div class="field row">
+                <label for="max-file-count">Maximum number of files</label>
+                <input type="number" name="max-file-count" id="max-file-count" value="1" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="actions">
+            <input class="btn btn-primary" type="submit" value="Add">
+        </div>
+    </form>
+</section>
+<script src="/js/internship-program/requirements/create.js" type="text/javascript"></script>
+{% endblock %}

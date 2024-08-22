@@ -1,0 +1,91 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Monitoring{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h2>
+        Monitor the Internship Program
+    </h2>
+    <p>
+        You can view the progress of the students and manage the requirements they must complete in here.
+    </p>
+</div>
+
+<section>
+    <table class="table table-hover">
+        <tbody class="table-rows-clickable">
+            <tr data-href="/internship-program/monitoring/hello">
+                <td>Partners</td>
+            </tr>
+            <tr data-href="/internship-program/monitoring/students">
+                <td>Students</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section>
+    <div class="title">
+        <h5>
+            Interns
+        </h5>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, magnam!
+        </p>
+    </div>
+    <a class="btn btn-primary" href="/internship-program/monitoring/interns">
+        <i class="i i-person-workspace"></i>
+        <span>View hired</span>
+    </a>
+    <a class="btn btn-primary" href="/internship-program/monitoring/interns">
+        <i class="i i-person-workspace"></i>
+        <span>View not hired</span>
+    </a>
+</section>
+<section>
+    <div class="title">
+        <h5>
+            Requirements
+        </h5>
+        <p>
+            You can manage the responses to each requirement in here.
+        </p>
+    </div>
+
+    {% if requirements is empty %}
+    <p>No requirements have found.</p>
+    {% else %}
+
+    <table class="table table-hover">
+        <colgroup>
+            <col class="w-3/5">
+            <col class="w-1/5">
+            <col class="w-1/5">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Week</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody class="table-rows-clickable">
+            {% for r in requirements %}
+            <tr data-href="/internship-program/monitoring/submissions?r={{ r.id }}">
+                <td>{{ r.name }}</td>
+                <td>{{ r.startWeekAsMonthWeek }}</td>
+                <td>{{ r.durationWeeksAsWeeks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+</section>
+<script src="/js/internship-program/monitoring/home.js"></script>
+{% endblock %}

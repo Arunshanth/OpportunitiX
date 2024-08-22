@@ -1,0 +1,38 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Internship Program{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h2>
+        Internship Program
+    </h2>
+    <p>
+    </p>
+</div>
+
+{% if IsAuthorized('JobCollectionPhase') or IsAuthorized('FirstRoundPhase') %}
+<div class="info-card">
+    <a class="btn btn-primary" role="button" href="/internship-program/internships/create">Post an internship</a>
+</div>
+{% endif %}
+
+<section>
+    <div class="title">
+        <h5>Important notices</h5>
+        {% if IsAuthorized('JobCollectionPhase') or IsAuthorized('FirstRoundPhase') or IsAuthorized('SecondRoundPhase')
+        %}
+        <p>Internship Program has been started.</p>
+        {% else %}
+        <p>Internship Program hasn't been started yet. Please check again later.</p>
+        {% endif %}
+    </div>
+
+</section>
+<script src="/js/internship-program/home-partner.js"></script>
+{% endblock %}

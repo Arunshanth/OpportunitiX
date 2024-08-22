@@ -1,0 +1,60 @@
+@use '../variables' as *;
+@use '../mixins';
+
+.m {
+    @include mixins.spacing-margin;
+}
+
+.p {
+    @include mixins.spacing-padding;
+}
+
+@include mixins.media-breakpoint-up(sm) {
+    .sm-m {
+        @include mixins.spacing-margin;
+    }
+
+    .sm-p {
+        @include mixins.spacing-padding;
+    }
+}
+
+@include mixins.media-breakpoint-up(md) {
+    .md-m {
+        @include mixins.spacing-margin;
+    }
+
+    .md-p {
+        @include mixins.spacing-padding;
+    }
+}
+
+@include mixins.media-breakpoint-up(lg) {
+    .lg-m {
+        @include mixins.spacing-margin;
+    }
+
+    .lg-p {
+        @include mixins.spacing-padding;
+    }
+}
+
+@include mixins.media-breakpoint-up(xl) {
+    .xl-m {
+        @include mixins.spacing-margin;
+    }
+
+    .xl-p {
+        @include mixins.spacing-padding;
+    }
+}
+
+@include mixins.media-breakpoint-up(xxl) {
+    .xxl-m {
+        @include mixins.spacing-margin;
+    }
+
+    .xxl-p {
+        @include mixins.spacing-padding;
+    }
+}

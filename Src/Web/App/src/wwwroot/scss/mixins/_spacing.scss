@@ -1,0 +1,115 @@
+@use '../variables' as *;
+
+@mixin margin {
+    @each $key, $value in $spacers {
+
+        // All sides
+        &-#{$key} {
+            margin: $value !important;
+        }
+
+        // Top
+        &t-#{$key} {
+            margin-top: $value !important;
+        }
+
+        // Right
+        &r-#{$key} {
+            margin-right: $value !important;
+        }
+
+        // Bottom
+        &b-#{$key} {
+            margin-bottom: $value !important;
+        }
+
+        // Left
+        &l-#{$key} {
+            margin-left: $value !important;
+        }
+
+        // X-axis (left and right)
+        &x-#{$key} {
+            margin-left: $value !important;
+            margin-right: $value !important;
+        }
+
+        // Y-axis (top and bottom)
+        &y-#{$key} {
+            margin-top: $value !important;
+            margin-bottom: $value !important;
+        }
+    }
+
+    &-auto {
+        margin: auto !important;
+    }
+
+    &t-auto {
+        margin-top: auto !important;
+    }
+
+    &r-auto {
+        margin-right: auto !important;
+    }
+
+    &b-auto {
+        margin-bottom: auto !important;
+    }
+
+    &l-auto {
+        margin-left: auto !important;
+    }
+
+    &x-auto {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    &y-auto {
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+    }
+}
+
+@mixin padding {
+    @each $key, $value in $spacers {
+
+        // All sides
+        &-#{$key} {
+            padding: $value !important;
+        }
+
+        // Top
+        &t-#{$key} {
+            padding-top: $value !important;
+        }
+
+        // Right
+        &r-#{$key} {
+            padding-right: $value !important;
+        }
+
+        // Bottom
+        &b-#{$key} {
+            padding-bottom: $value !important;
+        }
+
+        // Left
+        &l-#{$key} {
+            padding-left: $value !important;
+        }
+
+        // X-axis (left and right)
+        &x-#{$key} {
+            padding-left: $value !important;
+            padding-right: $value !important;
+        }
+
+        // Y-axis (top and bottom)
+        &y-#{$key} {
+            padding-top: $value !important;
+            padding-bottom: $value !important;
+        }
+    }
+}

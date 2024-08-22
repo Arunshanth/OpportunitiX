@@ -1,0 +1,207 @@
+@font-face {
+    font-family: "BootstrapIcons";
+    src: url("/fonts/bootstrap-icons.woff2") format("woff2"),
+        url("/fonts/bootstrap-icons.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.i {
+    font-family: "BootstrapIcons";
+    line-height: inherit;
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: middle;
+    margin: 0 0.2rem;
+}
+
+.i-calendar2::before {
+    content: "\F20C";
+}
+
+.i-calendar2-plus::before {
+    content: "\F205";
+}
+
+.i-list-task::before {
+    content: "\F477";
+}
+
+.i-search::before {
+    content: "\F52A";
+}
+
+.i-filter::before {
+    content: "\F3CA";
+}
+
+.i-chevron-down::before {
+    content: "\F282";
+}
+
+.i-list::before {
+    content: "\F479";
+}
+
+.i-x-lg::before {
+    content: "\F659";
+}
+
+.i-buildings::before {
+    content: "\F87D";
+}
+
+.i-plus::before {
+    content: "\F4FE";
+}
+
+.i-arrow-bar-up::before {
+    content: "\F115";
+}
+
+.i-arrow-bar-down::before {
+    content: "\F112";
+}
+
+.i-chevron-left::before {
+    content: "\F284";
+}
+
+.i-chevron-right::before {
+    content: "\F285";
+}
+
+.i-plus-lg::before {
+    content: "\F64D";
+}
+
+.i-trash::before {
+    content: "\F5DE";
+}
+
+.i-arrow-repeat::before {
+    content: "\F130";
+}
+
+.i-check-circle::before {
+    content: "\F26B";
+}
+
+.i-x-circle::before {
+    content: "\F623";
+}
+
+.i-people::before {
+    content: "\F4D0";
+}
+
+.i-person-bounding-box::before {
+    content: "\F4D4";
+}
+
+
+
+.i-clipboard-pulse::before {
+    content: "\F722";
+}
+
+.i-person-square::before {
+    content: "\F4DE";
+}
+
+.i-briefcase::before {
+    content: "\F1CC";
+}
+
+.i-journal-text::before {
+    content: "\F444";
+}
+
+.i-clipboard-check::before {
+    content: "\F28B";
+}
+
+.i-cloud-arrow-up::before {
+    content: "\F297";
+}
+
+.i-person-vcard::before {
+    content: "\F8C9";
+}
+
+.i-check-circle-fill::before {
+    content: "\F26A";
+}
+
+.i-dash-circle::before {
+    content: "\F2E6";
+}
+
+.i-dash-circle-fill::before {
+    content: "\F2E5";
+}
+
+.i-x-circle-fill::before {
+    content: "\F622";
+}
+
+.i-box-arrow-up-left::before {
+    font-size: 1rem;
+    content: "\F1C4";
+}
+
+.i-check-circle::before {
+    content: '\F26B';
+}
+
+.i-question-circle-fill::before {
+    content: '\F504';
+}
+
+.i-person-fill-gear::before {
+    content: "\F8A7";
+}
+
+.i-megaphone::before {
+    content: "\F484";
+}
+
+.i-file-person::before {
+    content: "\F379";
+}
+
+.i-card-list::before {
+    content: "\F227";
+}
+
+.i-person-workspace::before {
+    content: '\F67A';
+}
+
+.i-2-circle::before {
+    content: '\F79D';
+}
+
+.i-x::before {
+    content: '\F62A';
+}
+
+.i-chevron-contract::before {
+    content: '\F27D';
+}
+
+.i-chevron-expand::before {
+    content: '\F283';
+}
+
+.i-pencil::before {
+    content: '\F4CB';
+}
+
+.i-check2-circle::before {
+    content: '\F270';
+}
+
+.i-hourglass::before {
+    content: '\F421';
+}

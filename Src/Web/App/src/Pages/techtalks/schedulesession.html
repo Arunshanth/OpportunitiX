@@ -1,0 +1,55 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}TechTalks{% endblock %}
+
+{% block left_nav %}
+{% include "techtalks/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h2>
+        Create a Tech Talk Session
+    </h2>
+</div>
+<form action="/techtalks/createsession" method="post">
+
+    <div class="fielddate">
+        <label for="startTime">Tech Talk Session Number</label>
+        <input type="text" id="techtalkSessionNumber" name="techtalkSessionNumber" required>
+    </div>
+    <div class="field">
+        <label for="eventLocation">Event Participants</label>
+        <select name="participants" id="participants" required>
+            {% for group in groups %}
+            <option value="{{ group.id }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="fielddate">
+        <label for="startTime">Start Time</label>
+        <input type="datetime-local" id="startTime" name="startTime" required>
+    </div>
+    <div class="fielddate">
+        <label for="endTime">End Time</label>
+        <input type="datetime-local" id="endTime" name="endTime" required>
+    </div>
+    <div class="field">
+        <label for="sessionLocation">Session Location:</label>
+        <input type="text" id="sessionLocation" name="sessionLocation" required>
+    </div>
+    {# <div class="field">
+        <label for="description">Session Description</label>
+        <div class="text-editor-container">
+            <input type="hidden" name="description" id="description" placeholder="Put your description here.">
+            <div class="text-editor"></div>
+        </div>
+    </div> #}
+    <div class="actions">
+        <input class="btn btn-primary" type="submit" value="Schedule Session">
+    </div>
+</form>
+<script src="/js/techtalks/create.js"></script>
+
+{% endblock %}

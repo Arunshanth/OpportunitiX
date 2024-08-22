@@ -1,0 +1,49 @@
+
+### Composer ###
+composer.phar
+/vendor/
+
+### PHPUnit ###
+# Covers PHPUnit
+# Reference: https://phpunit.de/
+
+# Generated files
+.phpunit.result.cache
+.phpunit.cache
+
+# Cache
+cache
+
+# PHPUnit
+/app/phpunit.xml
+/phpunit.xml
+/cov
+
+# Build data
+/build/
+
+### Generated CSS and JavaScript ###
+/public/css/*.css
+/public/js/*.js
+/public/js
+
+### Sass ###
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+### JS ###
+*.js.map
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!.vscode/App.code-workspace
+
+# Dev dependencies
+node_modules/

@@ -1,0 +1,22 @@
+@use '../variables' as *;
+@use '../mixins';
+
+.xxl-max-w {
+    max-width: $webpage-max-allowed-width;
+}
+
+.w {
+    @include mixins.sizing-width;
+}
+
+.max-w {
+    @include mixins.sizing-max-width;
+}
+
+.min-w {
+    @include mixins.sizing-min-width;
+}
+
+.h {
+    @include mixins.sizing-height;
+}

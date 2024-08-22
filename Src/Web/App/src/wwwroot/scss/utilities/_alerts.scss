@@ -1,0 +1,13 @@
+@use '../variables' as *;
+
+.alert {
+    font-weight: $fw-semibold;
+
+    &-error {
+        color: $alert-error;
+    }
+
+    &-info {
+        color: $alert-info;
+    }
+}

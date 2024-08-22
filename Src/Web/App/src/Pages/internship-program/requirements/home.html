@@ -1,0 +1,49 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Requirements{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h2>Requirements to be fulfilled</h2>
+</div>
+
+<section>
+
+    {% if userRequirements is empty %}
+    <p>No requirements have found.</p>
+    {% else %}
+
+    <table class="table table-hover">
+        <colgroup>
+            <col class="w-3/5">
+            <col class="w-1/5">
+            <col class="w-1/5">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>Complete Before</th>
+            </tr>
+        </thead>
+        <tbody class="table-rows-clickable">
+            {% for i in userRequirements %}
+            {% set r = i.requirement %}
+            <tr data-href="/internship-program/requirements/{{ i.id }}">
+                <td>{{ r.name }}</td>
+                <td>{{ i.startWeekAsMonthWeek }}</td>
+                <td>{{ i.durationWeeksAsWeeks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+</section>
+<script src="/js/internship-program/requirements/home.js"></script>
+{% endblock %}

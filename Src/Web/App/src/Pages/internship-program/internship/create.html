@@ -1,0 +1,47 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Create Internship{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h4>
+        Post an internship
+    </h4>
+</div>
+<form action="/internship-program/internships/create" method="POST">
+    <div class="field">
+        <label for="title">Title</label>
+        <input name="title" id="title" type="text" maxlength="75" placeholder="Job role or position" required>
+    </div>
+
+    <div class="field">
+        <label for="description">Description</label>
+        <div class="text-editor-container">
+            <input type="hidden" name="description" id="description" placeholder="Put your description here.">
+            <div class="text-editor"></div>
+        </div>
+    </div>
+
+    {% if has_role('Admin') %}
+    <div class="field">
+        <label for="organization">Company or institute</label>
+        <select name="organization" id="organization">
+            <option value="" selected disabled>Select a company or institute</option>
+            {% for org in organizations %}
+            <option value="{{ org.id }}">{{ org.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+
+    <div class="actions">
+        <input class="btn btn-primary" type="submit" value="Add">
+    </div>
+</form>
+<script src="/js/internship-program/internship/create.js"></script>
+{% endblock %}

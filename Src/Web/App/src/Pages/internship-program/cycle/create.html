@@ -1,0 +1,42 @@
+{% extends "shared/layout-left-nav.html" %}
+
+{% block title %}Create an Internship Cycle{% endblock %}
+
+{% block left_nav %}
+{% include "internship-program/left-nav.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+    <h4>
+        Create an internship cycle
+    </h4>
+</div>
+<form action="/internship-program/cycle/create" method="POST">
+    <div class="field-group">
+        <label>Choose who participates in this cycle</label>
+        <div class="field row">
+            <label for="partner-group">Select partner user group</label>
+            <select name="partner-group" id="partner-group">
+                {% for group in eligiblePartnerGroups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="field row">
+            <label for="student-group">Select student user group</label>
+            <select name="student-group" id="student-group">
+                {% for group in eligibleStudentGroups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="actions">
+        <input class="btn btn-primary" type="submit" value="Create">
+        <input class="btn btn-secondary" type="reset" value="Reset">
+    </div>
+</form>
+
+{% endblock %}
